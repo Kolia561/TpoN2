@@ -1,5 +1,8 @@
 package com.estudiante;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Kolia
@@ -20,17 +23,37 @@ public class Animal implements Runnable{
 
         while (true) {
 
-            if(comedor.puedoComer(tipo)){
+            if (tipo) {
 
-                comedor.comer(tipo);
-                
-                Thread.sleep(3000);
+                try {
 
-                comedor.terminarComer(tipo);
+                    comedor.perrosComer();
+                    System.out.println( Thread.currentThread().getName() + " esta comiendo" );
+                    Thread.currentThread().sleep(Math.round(Math.random() * 1000));
+                    System.out.println( Thread.currentThread().getName() + " termino de comer" );
+                    comedor.perrosDejarComer();
 
-            }else{
+                } catch (InterruptedException ex) {
 
-                comedor.esperarTurno(tipo);
+                    Logger.getLogger(Animal.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+
+            } else {
+
+                try {
+
+                    comedor.gatosComer();
+                    System.out.println( Thread.currentThread().getName() + " esta comiendo" );
+                    Thread.currentThread().sleep(Math.round(Math.random() * 1000));
+                    System.out.println( Thread.currentThread().getName() + " termino de comer" );
+                    comedor.gatosDejarComer();
+
+                } catch (InterruptedException ex) {
+
+                    Logger.getLogger(Animal.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
 
             }
 
