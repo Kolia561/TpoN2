@@ -1,4 +1,4 @@
-package com.estudiante;
+package com.Comedero;
 
 import java.util.concurrent.Semaphore;
 
